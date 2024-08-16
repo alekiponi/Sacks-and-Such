@@ -34,6 +34,8 @@ final String mappingsVersion = project.findProperty("mappings_version") as Strin
 final boolean minifyResources = project.findProperty("minify_resources") as Boolean ?: true
 final boolean useAdvancedClassRedef = project.findProperty("use_advanced_class_redefinition") as Boolean ?: false
 
+final String modVersion = System.getenv("VERSION") ?: "0.0.0-indev"
+
 base {
     archivesName.set("$modName-$minecraftVersion")
     group = "mod.traister101" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -161,7 +163,15 @@ repositories {
             includeGroup "vazkii.patchouli"
         }
     }
-    mavenLocal()
+    maven {
+        name "Extended Slot Capacity github package"
+        // https://github.com/Traister101/ExtendedSlotCapacity
+        url uri("https://maven.pkg.github.com/traister101/ExtendedSlotCapacity")
+        credentials {
+            username = project.findProperty("githubUser") ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("githubToken") ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
 }
 
 dependencies {
@@ -179,7 +189,6 @@ dependencies {
 
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 
-    // https://github.com/Traister101/ExtendedSlotCapacity
     implementation jarJar(fg.deobf("mod.traister101:Extended-Slot-Capacity-1.20.1:$extendedSlotCapacityVersion")) {
         jarJar.ranged(it as Dependency, "[$extendedSlotCapacityVersion,)")
     }

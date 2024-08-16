@@ -1,0 +1,99 @@
+name: Publish on GitHub, Curseforge and Modrinth
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version_number: "${{ steps.version_number.outputs.result }}"
+      version_type: "${{ steps.version_type.outputs.result }}"
+    steps:
+      - name: Get Version
+        id: version_number
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            let ref = '${{ github.ref }}';
+            return ref.startsWith('refs/tags/v') ? ref.replace('refs/tags/v', '') : 'indev';
+
+      - name: Get Version Type
+        id: version_type
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            let version = '${{ steps.version.outputs.result }}';
+            return version.includes('alpha') ? 'alpha' : (version.includes('beta') ? 'beta' : 'release');
+
+  main:
+    needs: [ version ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      packages: write
+    env:
+      VERSION: ${{ needs.version.outputs.version_number }}
+      VERSION_TYPE: ${{ needs.version.outputs.version_type }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Make Gradle Wrapper Executable
+        if: ${{ runner.os != 'Windows' }}
+        run: chmod +x ./gradlew
+
+      - name: Log Version Info
+        run: echo "version = $VERSION, type = $VERSION_TYPE"
+
+      - name: Build
+        run: ./gradlew build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish (CurseForge/Modrinth/GitHub)
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          #          TODO update this after ensuring CI produces a working jar
+          #          modrinth-id: PhnM3Lkv
+          #          modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
+          #
+          #          curseforge-id: 695822
+          #          curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
+
+          github-tag: ${{ github.ref }}
+          github-draft: true
+          github-prerelease: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+          name: "Sacks 'N Such-1.20.1-${{ env.VERSION }}"
+          version: "${{ env.VERSION }}"
+          version-type: "${{ env.VERSION_TYPE }}"
+
+          files: |
+            build/libs/!(*-@(dev|sources|javadoc))-all.jar
+
+          loaders: |
+            forge
+            neoforge
+
+          game-versions: "1.20.1"
+          java: 17
+          changelog-file: CHANGELOG.md
