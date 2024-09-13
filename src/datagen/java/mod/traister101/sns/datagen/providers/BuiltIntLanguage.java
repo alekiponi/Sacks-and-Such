@@ -50,6 +50,11 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 		add(ContainerItem.INVENTORY_INTERACTION_TOOLTIP, "Inventory Interaction: %s");
 		add(ContainerItem.ALLOWED_SIZE_TOOLTIP, "Fits at most size: %s");
 		add(LunchBoxItem.SELECTED_SLOT_TOOLTIP, "Selected Slot: %s");
+		add(MobNetItem.CANNOT_CAPTURE_PLAYERS, "You cannot capture players");
+		add(MobNetItem.CANNOT_CAPTURE_GENERIC, "You cannot capture %ss");
+		add(MobNetItem.CANNOT_CAPTURE_SIZE, "The %s is too large to capture");
+		add(MobNetItem.CANNOT_PLACE, "There's not enough space to release captured %s");
+		add(MobNetItem.STACK_NAME, "%s (%s)");
 		add(ToggleType.PICKUP.langKey, "Item Pickup %s");
 		add(ToggleType.VOID.langKey, "Item Voiding %s");
 		add(SNSUtils.ENABLED, "Enabled");

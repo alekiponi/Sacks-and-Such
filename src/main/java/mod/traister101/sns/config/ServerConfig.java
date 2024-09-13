@@ -22,6 +22,7 @@ public final class ServerConfig {
 	public final BooleanValue allAllowFood;
 	public final BooleanValue enableContainerInventoryInteraction;
 	public final DoubleValue traitLunchboxModifier;
+	public final DoubleValue maximumNetCaptureSize;
 
 	ServerConfig(final ForgeConfigSpec.Builder builder) {
 
@@ -55,6 +56,9 @@ public final class ServerConfig {
 		traitLunchboxModifier = builder.comment(
 						"The modifer for the 'Lunchbox' food trait. Values less than 1 extend food lifetime, values greater than one decrease it. A value of zero stops decay.")
 				.defineInRange("traitLunchboxModifier", 0.6, 0.0, Double.MAX_VALUE);
+		maximumNetCaptureSize = builder.comment(
+						"The maximum size of an entity which mob nets can capture. This is not directly related to TFC's animal size stat.")
+				.defineInRange("maximumNetCaptureSize", 0.5, 0, Double.MAX_VALUE);
 	}
 
 	private ContainerConfig buildContainerConfig(final Builder builder, final String containerName, final boolean doPickup, final boolean doVoiding,

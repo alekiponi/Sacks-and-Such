@@ -32,6 +32,8 @@ public final class SNSItems {
 	public static final RegistryObject<LunchBoxItem> LUNCHBOX = register("lunchbox",
 			() -> new LunchBoxItem(new Properties(), DefaultContainers.LUNCHBOX));
 
+	public static final RegistryObject<MobNetItem> MOB_NET_ITEM = register("mob_net", () -> new MobNetItem(new Properties()));
+
 	private static RegistryObject<ContainerItem> registerContainerItem(final ContainerType containerType) {
 		return registerContainerItem(containerType, new Properties().stacksTo(1));
 	}
