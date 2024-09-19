@@ -16,13 +16,6 @@ pluginManagement {
             content { includeGroupByRegex "org\\.spongepowered.*" }
         }
     }
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.namespace == "org.spongepowered") {
-                useModule("org.spongepowered:mixingradle:$requested.version")
-            }
-        }
-    }
 }
 
 plugins {

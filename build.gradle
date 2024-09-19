@@ -65,6 +65,14 @@ configurations {
 
 mixin {
     add sourceSets.main, "sacks-n-such.refmap.json"
+    config "sacks-n-such.mixins.json"
+
+    //noinspection GrUnresolvedAccess
+    debug.verbose = true
+    //noinspection GrUnresolvedAccess
+    debug.export = true
+    overwriteErrorLevel = "error"
+    hotSwap = true
 }
 
 minecraft {
@@ -82,8 +90,6 @@ minecraft {
             if (useAdvancedClassRedef) {
                 jvmArg("-XX:+AllowEnhancedClassRedefinition")
             }
-
-            arg "-mixin.config=sacks-n-such.mixins.json"
 
             mods {
                 "$modID" {
@@ -171,9 +177,7 @@ dependencies {
     // TFC
     implementation fg.deobf("curse.maven:terrafirmacraft-302973:$tfcFileID")
 
-    if (System.getProperty("idea.sync.active") != "true") {
-        annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
-    }
+    annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 
     // https://github.com/Traister101/ExtendedSlotCapacity
     implementation jarJar(fg.deobf("mod.traister101:Extended-Slot-Capacity-1.20.1:$extendedSlotCapacityVersion")) {
