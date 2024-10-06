@@ -2,7 +2,6 @@ package mod.traister101.sns.client;
 
 import mod.traister101.sns.common.capability.ILunchboxHandler.CycleDirection;
 import mod.traister101.sns.common.capability.LunchboxCapability;
-import mod.traister101.sns.common.items.SNSItems;
 import mod.traister101.sns.config.SNSConfig;
 import mod.traister101.sns.mixins.client.invoker.AddCustomNbtDataInvoker;
 import mod.traister101.sns.network.*;
@@ -37,7 +36,8 @@ public final class ClientForgeEventHandler {
 
 		eventBus.addListener(ClientForgeEventHandler::onKeyPress);
 		eventBus.addListener(ClientForgeEventHandler::onClickInput);
-		eventBus.addListener(ClientForgeEventHandler::onMouseScroll);
+		// TODO add back when content done
+//		eventBus.addListener(ClientForgeEventHandler::onMouseScroll);
 	}
 
 	public static void onKeyPress(final Key event) {
@@ -80,8 +80,9 @@ public final class ClientForgeEventHandler {
 		if (MC.player == null) return;
 
 		final ItemStack mainHandStack = MC.player.getMainHandItem();
+// TODO add this back when the content is finished
 
-		if (!mainHandStack.is(SNSItems.LUNCHBOX.get())) return;
+//		if (!mainHandStack.is(SNSItems.LUNCHBOX.get())) return;
 
 		if (!MC.player.isShiftKeyDown()) return;
 
