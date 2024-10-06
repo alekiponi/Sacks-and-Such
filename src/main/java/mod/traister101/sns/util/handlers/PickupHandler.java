@@ -47,10 +47,8 @@ public final class PickupHandler {
 			final int startCount = stack.getCount();
 			itemResult = pickupItemStack(player, stack);
 			pickupCount = startCount - itemResult.getCount();
+			if (itemResult.isEmpty()) event.setCanceled(true);
 		}
-
-		// Update the item entity
-		itemEntity.setItem(itemResult);
 
 		// Picked up more than 0
 		if (0 < pickupCount) {
@@ -58,8 +56,6 @@ public final class PickupHandler {
 			final var packet = new ClientboundTakeItemEntityPacket(itemEntity.getId(), player.getId(), pickupCount);
 			((ServerPlayer) player).connection.send(packet);
 		}
-
-		event.setCanceled(itemResult.isEmpty());
 	}
 
 	/**
@@ -112,7 +108,8 @@ public final class PickupHandler {
 	}
 
 	/**
-	 * Tries to first fill any valid stacks in the player inventory then tries to fill any {@link ContainerItem}s. If both fail to consume the entire stack
+	 * Tries to first fill any valid stacks in the player inventory then tries to fill any {@link ContainerItem}s. If both fail to consume the entire
+	 * stack
 	 * the remainer is returned
 	 *
 	 * @param player Player to handle
@@ -121,7 +118,7 @@ public final class PickupHandler {
 	 * @return Empty {@link ItemStack} or the remainer.
 	 */
 	private static ItemStack pickupItemStack(final Player player, final ItemStack itemPickup) {
-		ItemStack remainder = itemPickup.copy();
+		ItemStack remainder = itemPickup;
 
 		final Inventory playerInventory = player.getInventory();
 		if (topOffPlayerInventory(playerInventory, remainder)) return ItemStack.EMPTY;
@@ -144,7 +141,7 @@ public final class PickupHandler {
 
 					if (containerInv.isEmpty()) continue;
 
-					remainder = insertStack(remainder, containerInv.get());
+					remainder = insertStack(itemPickup, containerInv.get());
 
 					if (remainder.isEmpty()) continue;
 					if (SNSConfig.SERVER.doVoiding.get() && !ContainerType.canDoItemVoiding(itemContainer)) continue;
@@ -167,7 +164,7 @@ public final class PickupHandler {
 
 			if (containerInv.isEmpty()) continue;
 
-			remainder = insertStack(remainder, containerInv.get());
+			remainder = insertStack(itemPickup, containerInv.get());
 
 			if (remainder.isEmpty()) continue;
 			if (SNSConfig.SERVER.doVoiding.get() && !ContainerType.canDoItemVoiding(itemContainer)) continue;
@@ -187,15 +184,15 @@ public final class PickupHandler {
 	 * @return The remaining items that didn't fit
 	 */
 	private static ItemStack insertStack(final ItemStack fillStack, final IItemHandler itemHandler) {
-		ItemStack pickupResult = fillStack.copy();
+		ItemStack pickupResult = fillStack;
 		for (int slotIndex = 0; slotIndex < itemHandler.getSlots(); slotIndex++) {
 			if (itemHandler.getStackInSlot(slotIndex).getCount() >= itemHandler.getSlotLimit(slotIndex)) continue;
 
-			pickupResult = itemHandler.insertItem(slotIndex, pickupResult, false);
+			pickupResult = itemHandler.insertItem(slotIndex, fillStack, false);
 
-			if (pickupResult.isEmpty()) {
-				return ItemStack.EMPTY;
-			}
+			if (pickupResult.isEmpty()) return ItemStack.EMPTY;
+
+			fillStack.shrink(fillStack.getCount() - pickupResult.getCount());
 		}
 		return pickupResult;
 	}
