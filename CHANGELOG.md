@@ -6,3 +6,4 @@
 
 - Added new tag 'allowed_in_ore_sack' for items which can go into ore sacks (wow crazy)
 - Not ugly Icon courtesy of Aleki
+- Start of patchouli entires

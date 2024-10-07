@@ -71,12 +71,11 @@ jobs:
       - name: Publish (CurseForge/Modrinth/GitHub)
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-          #          TODO update this after ensuring CI produces a working jar
-          #          modrinth-id: PhnM3Lkv
-          #          modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
-          #
-          #          curseforge-id: 695822
-          #          curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
+          modrinth-id: PhnM3Lkv
+          modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
+
+          curseforge-id: 695822
+          curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
 
           github-tag: ${{ github.ref }}
           github-draft: true
