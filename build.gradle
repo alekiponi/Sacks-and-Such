@@ -6,6 +6,7 @@ plugins {
     id "java"
     id "eclipse"
     id "maven-publish"
+    id "io.github.0ffz.github-packages" version "1.2.1"
     id "net.minecraftforge.gradle" version "[6.0,6.2)"
     id "org.parchmentmc.librarian.forgegradle" version "1.+"
     id "org.spongepowered.mixin" version "0.7.+"
@@ -163,15 +164,9 @@ repositories {
             includeGroup "vazkii.patchouli"
         }
     }
-    maven {
-        name "Extended Slot Capacity github package"
-        // https://github.com/Traister101/ExtendedSlotCapacity
-        url uri("https://maven.pkg.github.com/traister101/ExtendedSlotCapacity")
-        credentials {
-            username = project.findProperty("githubUser") ?: System.getenv("GITHUB_ACTOR")
-            password = project.findProperty("githubToken") ?: System.getenv("GITHUB_TOKEN")
-        }
-    }
+    // https://github.com/Traister101/ExtendedSlotCapacity
+    //noinspection GroovyAssignabilityCheck, GrUnresolvedAccess
+    maven githubPackage.invoke("traister101/ExtendedSlotCapacity")
 }
 
 dependencies {
