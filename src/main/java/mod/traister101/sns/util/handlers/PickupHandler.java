@@ -61,7 +61,7 @@ public final class PickupHandler {
 		}
 
 		event.setCanceled(itemResult.isEmpty());
-		event.setResult(Result.ALLOW);
+		event.setResult(0 < pickupCount ? Result.ALLOW : Result.DEFAULT);
 	}
 
 	/**
