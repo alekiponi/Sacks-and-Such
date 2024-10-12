@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Get Version
         id: version_number
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
@@ -24,7 +24,7 @@ jobs:
 
       - name: Get Version Type
         id: version_type
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: write
-      packages: write
+      packages: read
     env:
       VERSION: ${{ needs.version.outputs.version_number }}
       VERSION_TYPE: ${{ needs.version.outputs.version_type }}
@@ -69,7 +69,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish (CurseForge/Modrinth/GitHub)
-        uses: Kir-Antipov/mc-publish@v3.3
+        uses: Kir-Antipov/mc-publish@v3
         with:
           modrinth-id: PhnM3Lkv
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
