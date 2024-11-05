@@ -12,7 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
+import net.minecraft.tags.*;
 import net.minecraft.world.level.block.Block;
 
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,7 +30,7 @@ public class BuiltInItemTags extends ItemTagsProvider {
 	@Override
 	protected void addTags(final Provider provider) {
 		tag(SNSItemTags.PREVENTED_IN_ITEM_CONTAINERS).add(SNSItems.STRAW_BASKET.get(), SNSItems.LEATHER_SACK.get(), SNSItems.BURLAP_SACK.get(),
-				SNSItems.ORE_SACK.get(), SNSItems.SEED_POUCH.get(), SNSItems.FRAME_PACK.get(), SNSItems.LUNCHBOX.get());
+				SNSItems.ORE_SACK.get(), SNSItems.SEED_POUCH.get(), SNSItems.FRAME_PACK.get(), SNSItems.LUNCHBOX.get(), SNSItems.QUIVER.get());
 		tag(SNSItemTags.ALLOWED_IN_SEED_POUCH).addTag(SNSItemTags.TFC_SEEDS);
 		tag(SNSItemTags.ALLOWED_IN_ORE_SACK).addTag(SNSItemTags.TFC_SMALL_ORE_PIECES).addTag(SNSItemTags.TFC_ORE_PIECES);
 		tag(SNSItemTags.LUNCHBOX_FOOD).add(TFCItems.FOOD.get(Food.BARLEY_BREAD_SANDWICH).get(),
@@ -48,13 +48,14 @@ public class BuiltInItemTags extends ItemTagsProvider {
 				.addTag(SNSItemTags.TFC_DAIRY)
 				.addTag(SNSItemTags.TFC_FIRUITS)
 				.addTag(SNSItemTags.TFC_VEGETABLES);
+		tag(SNSItemTags.ALLOWED_IN_QUIVER).addTag(ItemTags.ARROWS).addTag(SNSItemTags.TFC_JAVELINS);
 
 		tag(TFCTags.Items.USABLE_ON_TOOL_RACK).add(SNSItems.STRAW_BASKET.get(), SNSItems.LEATHER_SACK.get(), SNSItems.BURLAP_SACK.get(),
-				SNSItems.ORE_SACK.get(), SNSItems.SEED_POUCH.get(), SNSItems.FRAME_PACK.get(), SNSItems.LUNCHBOX.get());
+				SNSItems.ORE_SACK.get(), SNSItems.SEED_POUCH.get(), SNSItems.FRAME_PACK.get(), SNSItems.LUNCHBOX.get(), SNSItems.QUIVER.get());
 
 		// Curios
 		tag(TagKey.create(Registries.ITEM, new ResourceLocation(CuriosApi.MODID, "belt"))).add(SNSItems.LEATHER_SACK.get(),
 				SNSItems.BURLAP_SACK.get(), SNSItems.ORE_SACK.get(), SNSItems.SEED_POUCH.get());
-		tag(TagKey.create(Registries.ITEM, new ResourceLocation(CuriosApi.MODID, "back"))).add(SNSItems.FRAME_PACK.get());
+		tag(TagKey.create(Registries.ITEM, new ResourceLocation(CuriosApi.MODID, "back"))).add(SNSItems.FRAME_PACK.get(), SNSItems.QUIVER.get());
 	}
 }

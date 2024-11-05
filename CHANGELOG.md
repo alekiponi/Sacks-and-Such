@@ -6,6 +6,7 @@
 - Added Hiking Boots, speeding you up and allowing you to quickly navigate though tall grass
 - Added Horseshoes, allowing horses to move faster
 - Keybind for opening container items. Also works when worn in curios slots
+- Added a Quiver replicating the one TFC had in older versions
 
 ### Changes
 

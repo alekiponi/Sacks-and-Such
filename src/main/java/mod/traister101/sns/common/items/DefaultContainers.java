@@ -42,6 +42,9 @@ public final class DefaultContainers {
 	public static final ContainerType LUNCHBOX = new ContainerItemType<>("lunchbox", Size.NORMAL, SNSConfig.SERVER.lunchBox, LunchboxHandler::new,
 			ForgeCapabilities.ITEM_HANDLER, SNSCapabilities.LUNCHBOX, SNSCapabilities.ITEM_VOIDING_ITEM_HANDLER);
 
+	public static final ContainerType QUIVER = new ContainerItemType<>("quiver", Size.HUGE, SNSConfig.SERVER.quiver, QuiverHandler::new,
+			ForgeCapabilities.ITEM_HANDLER, SNSCapabilities.ITEM_VOIDING_ITEM_HANDLER);
+
 	private record ContainerItemType<Handler extends INBTSerializable<CompoundTag>>(String name,
 			Size size,
 			ContainerConfig containerConfig,
@@ -160,6 +163,20 @@ public final class DefaultContainers {
 		@Override
 		public int getStackLimit(final int slotIndex, final ItemStack itemStack) {
 			return itemStack.getMaxStackSize();
+		}
+	}
+
+	private static class QuiverHandler extends ContainerItemHandler {
+
+		public QuiverHandler(final ContainerType type, final ItemStack itemStack) {
+			super(type, itemStack);
+		}
+
+		@Override
+		public boolean isItemValid(final int slotIndex, final ItemStack itemStack) {
+			if (!SNSConfig.SERVER.allAllowFood.get() && itemStack.is(TFCTags.Items.FOODS)) return false;
+
+			return itemStack.is(SNSItemTags.ALLOWED_IN_QUIVER) && super.isItemValid(slotIndex, itemStack);
 		}
 	}
 }

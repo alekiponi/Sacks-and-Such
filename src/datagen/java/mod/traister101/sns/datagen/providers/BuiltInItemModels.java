@@ -34,6 +34,7 @@ public class BuiltInItemModels extends ItemModelProvider {
 		basicItem(SNSItems.BLACK_STEEL_TOE_HIKING_BOOTS.get(), new ResourceLocation(SacksNSuch.MODID, "item/hiking_boots"));
 		basicItem(SNSItems.BLUE_STEEL_TOE_HIKING_BOOTS.get(), new ResourceLocation(SacksNSuch.MODID, "item/hiking_boots"));
 		basicItem(SNSItems.RED_STEEL_TOE_HIKING_BOOTS.get(), new ResourceLocation(SacksNSuch.MODID, "item/hiking_boots"));
+		basicItem(SNSItems.QUIVER.get());
 
 		iconWithHeldModel(SNSItems.STRAW_BASKET.get());
 		iconWithHeldModel(SNSItems.LEATHER_SACK.get(),

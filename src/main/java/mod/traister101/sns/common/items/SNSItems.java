@@ -42,6 +42,7 @@ public final class SNSItems {
 			new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
 	public static final RegistryObject<LunchBoxItem> LUNCHBOX = register("lunchbox",
 			() -> new LunchBoxItem(new Properties(), DefaultContainers.LUNCHBOX));
+	public static final RegistryObject<ContainerItem> QUIVER = registerContainerItem(DefaultContainers.QUIVER);
 
 	public static final RegistryObject<MobNetItem> MOB_NET_ITEM = register("mob_net", () -> new MobNetItem(new Properties()));
 

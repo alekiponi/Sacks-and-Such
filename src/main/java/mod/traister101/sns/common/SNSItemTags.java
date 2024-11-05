@@ -63,6 +63,11 @@ public final class SNSItemTags {
 	public static final TagKey<Item> TFC_VEGETABLES = fromTFC("foods/vegetables");
 
 	/**
+	 * TFCs javelin tag
+	 */
+	public static final TagKey<Item> TFC_JAVELINS = fromTFC("javelins");
+
+	/**
 	 * Tag for items that shouldn't go inside sacks. We only put our sacks in this
 	 */
 	public static final TagKey<Item> PREVENTED_IN_ITEM_CONTAINERS = create("prevented_in_item_containers");
@@ -70,6 +75,8 @@ public final class SNSItemTags {
 	public static final TagKey<Item> ALLOWED_IN_SEED_POUCH = create("allowed_in_seed_pouch");
 
 	public static final TagKey<Item> ALLOWED_IN_ORE_SACK = create("allowed_in_ore_sack");
+
+	public static final TagKey<Item> ALLOWED_IN_QUIVER = create("allowed_in_quiver");
 
 	/**
 	 * Tag for lunchbox food. Includes most TFC foods but not some like soups

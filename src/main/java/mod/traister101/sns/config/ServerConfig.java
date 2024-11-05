@@ -15,6 +15,7 @@ public final class ServerConfig {
 	public final ContainerConfig seedPouch;
 	public final ContainerConfig framePack;
 	public final ContainerConfig lunchBox;
+	public final ContainerConfig quiver;
 
 	// Boots
 	public final IntValue bootsStepPerDamage;
@@ -55,6 +56,7 @@ public final class ServerConfig {
 		seedPouch = ContainerConfig.buildContainerConfig(builder, "Seed Pouch", true, false, true, 27, 64, Size.SMALL);
 		framePack = ContainerConfig.buildContainerConfig(builder, "Frame Pack", false, false, false, 18, 64, Size.LARGE);
 		lunchBox = ContainerConfig.buildContainerConfig(builder, "Lunch Box", false, false, true, 8, 4, Size.NORMAL);
+		quiver = ContainerConfig.buildContainerConfig(builder, "Quiver", true, false, false, 8, 32, Size.VERY_LARGE);
 
 		builder.pop();
 
