@@ -1,9 +1,9 @@
 package mod.traister101.sns.common.menu;
 
 import com.google.common.base.Supplier;
+import mod.traister101.esc.common.menu.ExtendedSlotCapacityMenu;
+import mod.traister101.esc.common.slot.ExtendedSlotItemHandler;
 import mod.traister101.sns.common.items.SNSItems;
-import mod.trasiter101.esc.common.menu.ExtendedSlotCapacityMenu;
-import mod.trasiter101.esc.common.slot.ExtendedSlotItemHandler;
 import top.theillusivec4.curios.api.*;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -142,10 +142,6 @@ public class ContainerItemMenu extends ExtendedSlotCapacityMenu {
 		return new ContainerItemMenu(windowId, inventory, handler, containerStackSupplier);
 	}
 
-	public int getContainerSlots() {
-		return containerSlots;
-	}
-
 	@Override
 	public ItemStack quickMoveStack(final Player player, final int slotIndex) {
 		final Slot slot = slots.get(slotIndex);
@@ -183,6 +179,10 @@ public class ContainerItemMenu extends ExtendedSlotCapacityMenu {
 	@Override
 	public boolean stillValid(final Player player) {
 		return !getContainerStack().isEmpty();
+	}
+
+	public int getContainerSlots() {
+		return containerSlots;
 	}
 
 	public final ItemStack getContainerStack() {

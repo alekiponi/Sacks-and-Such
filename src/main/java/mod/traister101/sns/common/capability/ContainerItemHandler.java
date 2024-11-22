@@ -1,9 +1,9 @@
 package mod.traister101.sns.common.capability;
 
+import mod.traister101.esc.common.capability.ExtendedSlotCapacityHandler;
 import mod.traister101.sns.common.SNSItemTags;
 import mod.traister101.sns.config.SNSConfig;
 import mod.traister101.sns.util.ContainerType;
-import mod.trasiter101.esc.common.capability.ExtendedSlotCapacityHandler;
 import net.dries007.tfc.common.capabilities.size.*;
 
 import net.minecraft.nbt.CompoundTag;
