@@ -30,6 +30,10 @@ public class BuiltInItemModels extends ItemModelProvider {
 		basicItem(SNSItems.REINFORCED_FABRIC.get());
 		basicItem(SNSItems.PACK_FRAME.get());
 		basicItem(SNSItems.HIKING_BOOTS.get());
+		basicItem(SNSItems.STEEL_TOE_HIKING_BOOTS.get(), new ResourceLocation(SacksNSuch.MODID, "item/hiking_boots"));
+		basicItem(SNSItems.BLACK_STEEL_TOE_HIKING_BOOTS.get(), new ResourceLocation(SacksNSuch.MODID, "item/hiking_boots"));
+		basicItem(SNSItems.BLUE_STEEL_TOE_HIKING_BOOTS.get(), new ResourceLocation(SacksNSuch.MODID, "item/hiking_boots"));
+		basicItem(SNSItems.RED_STEEL_TOE_HIKING_BOOTS.get(), new ResourceLocation(SacksNSuch.MODID, "item/hiking_boots"));
 
 		iconWithHeldModel(SNSItems.STRAW_BASKET.get());
 		iconWithHeldModel(SNSItems.LEATHER_SACK.get(),
@@ -42,6 +46,15 @@ public class BuiltInItemModels extends ItemModelProvider {
 				withExistingParent("item/held/seed_pouch", SMALL_SACK).texture("sack", modLoc("item/held/seed_pouch")));
 		iconWithHeldModel(SNSItems.FRAME_PACK.get());
 	}
+
+	public ItemModelBuilder basicItem(final Item item, final ResourceLocation texture) {
+		return basicItem(Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)), texture);
+	}
+
+	public ItemModelBuilder basicItem(final ResourceLocation item, final ResourceLocation texture) {
+		return getBuilder(item.toString()).parent(new ModelFile.UncheckedModelFile("item/generated")).texture("layer0", texture);
+	}
+
 
 	@SuppressWarnings("UnusedReturnValue")
 	private SeparateTransformsModelBuilder<ItemModelBuilder> iconWithHeldModel(final Item item) {
