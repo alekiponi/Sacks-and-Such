@@ -49,8 +49,14 @@ public final class DefaultContainers {
 			Capability<? super Handler>... capabilities) implements ContainerType {
 
 		@SafeVarargs
-		@SuppressWarnings("varargs")
-		private ContainerItemType {
+		@SuppressWarnings({"varargs", "RedundantRecordConstructor"})
+		private ContainerItemType(final String name, final Size size, final ContainerConfig containerConfig,
+				final BiFunction<ContainerType, ItemStack, Handler> handlerFactory, final Capability<? super Handler>... capabilities) {
+			this.name = name;
+			this.size = size;
+			this.containerConfig = containerConfig;
+			this.handlerFactory = handlerFactory;
+			this.capabilities = capabilities;
 		}
 
 		@Override
