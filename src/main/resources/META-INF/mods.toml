@@ -1,13 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 license = "MIT"
-#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+issueTrackerURL = "https://github.com/Traister101/Sacks-and-Such/issues"
+
 [[mods]]
 modId = "sns"
 version = "${file.jarVersion}"
 displayName = "Sacks 'N Such"
 logoFile = "icon.png"
 authors = "Traister101"
+credits = "Majority of art assets and models by Alekiponi, Boots assets by coachthesexprime"
 description = '''An addon for TFC focusing on bringing vessel like handheld containers for all your adventuring needs'''
 
 [[dependencies.sns]]
