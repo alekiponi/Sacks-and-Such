@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-	"layer0": "sns:item/icon/seed_pouch"
+    "layer0": "sns:item/icon/straw_basket"
   }
 }

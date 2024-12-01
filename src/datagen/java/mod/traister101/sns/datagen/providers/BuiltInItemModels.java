@@ -89,7 +89,7 @@ public class BuiltInItemModels extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder icon(final ResourceLocation item) {
-		return getBuilder(item.withPrefix("icon/").toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
+		return getBuilder(item.withPrefix("item/icon/").toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
 				.texture("layer0", item.withPrefix("item/icon/"));
 	}
 
